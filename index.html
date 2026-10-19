@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Ketolito</title>
+<style>
+  html,body{margin:0;height:100%;background:#000;overflow:hidden}
+  video{position:fixed;inset:0;width:100%;height:100%;object-fit:contain;background:#000}
+  #snd{position:fixed;left:50%;bottom:6%;transform:translateX(-50%);padding:12px 22px;border:0;border-radius:999px;
+       background:rgba(255,255,255,.9);font:600 16px system-ui,sans-serif;color:#111;display:none;z-index:2}
+</style>
+</head>
+<body>
+<video id="v" src="video.mp4" autoplay muted loop playsinline controls controlslist="nodownload noplaybackrate" disablepictureinpicture></video>
+<button id="snd">🔊 Activar sonido</button>
+<script>
+  const v=document.getElementById('v'), b=document.getElementById('snd');
+  v.play().catch(()=>{});
+  b.style.display='block';
+  b.onclick=()=>{v.muted=false;v.currentTime=0;v.play();b.style.display='none'};
+  v.addEventListener('volumechange',()=>{if(!v.muted)b.style.display='none'});
+</script>
+</body>
+</html>
